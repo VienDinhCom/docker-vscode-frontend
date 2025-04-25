@@ -16,11 +16,12 @@ services:
     ports:
       - '2233:22'
       - '3000:3000'
-#   production:
-#     # userns_mode: "keep-id"
-#     build:
-#       context: .
-#       target: production
+
+  production:
+    #     # userns_mode: "keep-id"
+    build:
+      context: .
+      target: production
 #       args:
 #         UID: ${UID}
 #         GID: ${GID}
