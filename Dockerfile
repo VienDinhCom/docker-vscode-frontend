@@ -29,8 +29,8 @@ RUN ssh-keygen -A
 RUN passwd -d ${USR}
 RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 
-# # Dev Tools
-# RUN apk add git
+# Dev Tools
+RUN apk add git
 
 # ENV API_URL=
 # ENV NODE_ENV=development
