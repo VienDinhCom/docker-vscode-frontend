@@ -16,6 +16,8 @@ services:
     ports:
       - '2233:22'
       - '3000:3000'
+    profiles:
+      - dev
 
   production:
     #     # userns_mode: "keep-id"
@@ -30,5 +32,5 @@ services:
       - NODE_ENV=production
     ports:
       - '3000:3000'
-#     profiles:
-#       - production
+    profiles:
+      - prod
