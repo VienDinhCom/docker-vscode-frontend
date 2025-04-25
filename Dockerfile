@@ -42,9 +42,9 @@ USER root
 CMD ["/usr/sbin/sshd", "-D"]
 
 
-# # TARGET: PRODUCTION 
-# ##################################################################
-# FROM base AS build
+# TARGET: PRODUCTION 
+##################################################################
+FROM base AS build
 
 # COPY package*.json ./
 
