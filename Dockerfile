@@ -54,9 +54,9 @@ COPY . .
 
 RUN npm run build
 
-# # Next
+# Next
 
-# FROM base AS production
+FROM base AS production
 
 # ENV NODE_ENV=production
 
