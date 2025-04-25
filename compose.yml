@@ -17,7 +17,7 @@ services:
       - '2233:22'
       - '3000:3000'
     profiles:
-      - dev
+      - development
 
   production:
     #     # userns_mode: "keep-id"
@@ -33,4 +33,4 @@ services:
     ports:
       - '3000:3000'
     profiles:
-      - prod
+      - production
