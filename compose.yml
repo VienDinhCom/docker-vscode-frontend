@@ -7,7 +7,7 @@ services:
       args:
         UID: ${UID}
         GID: ${GID}
-      #   USR: frontend
+        USR: frontend
 #     volumes:
 #       - ./:/home/frontend/project
 #     environment:
