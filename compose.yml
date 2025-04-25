@@ -15,8 +15,7 @@ services:
       - API_URL=http://backend:8080
     ports:
       - '2233:22'
-#       - "3000:3000"
-
+      - '3000:3000'
 #   production:
 #     # userns_mode: "keep-id"
 #     build:
