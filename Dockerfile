@@ -12,7 +12,7 @@ RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
 
-# WORKDIR /home/${USR}/project
+WORKDIR /home/${USR}/project
 
 
 # # TARGET: DEVELOPMENT
