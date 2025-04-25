@@ -60,7 +60,7 @@ FROM base AS production
 
 # ENV NODE_ENV=production
 
-# COPY --from=build /home/${USR}/project/dist/client .
+COPY --from=build /home/${USR}/project/dist .
 
 # RUN npm install -g serve
 
