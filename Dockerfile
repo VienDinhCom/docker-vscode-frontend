@@ -23,11 +23,11 @@ FROM base AS development
 RUN apk add fish
 RUN chsh -s $(which fish) ${USR}
 
-# # SSH Server 
-# RUN apk add openssh
-# RUN ssh-keygen -A
-# RUN passwd -d ${USR}
-# RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
+# SSH Server 
+RUN apk add openssh
+RUN ssh-keygen -A
+RUN passwd -d ${USR}
+RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 
 # # Dev Tools
 # RUN apk add git
