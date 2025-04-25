@@ -16,18 +16,21 @@ services:
     ports:
       - '2233:22'
       - '3000:3000'
-#   production:
-#     # userns_mode: "keep-id"
-#     build:
-#       context: .
-#       target: production
-#       args:
-#         UID: ${UID}
-#         GID: ${GID}
-#         USR: frontend
-#     environment:
-#       - NODE_ENV=production
-#     ports:
-#       - "3000:3000"
-#     profiles:
-#       - production
+    profiles:
+      - development
+
+  production:
+    #     # userns_mode: "keep-id"
+    build:
+      context: .
+      target: production
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        USR: frontend
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '3000:3000'
+    profiles:
+      - production

@@ -32,8 +32,8 @@ RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 # Dev Tools
 RUN apk add git
 
-ENV API_URL=http://backend.com/api
 ENV NODE_ENV=development
+ENV API_URL=http://backend:8080
 
 EXPOSE 3000 22
 
@@ -42,32 +42,32 @@ USER root
 CMD ["/usr/sbin/sshd", "-D"]
 
 
-# # TARGET: PRODUCTION 
-# ##################################################################
-# FROM base AS build
+# TARGET: PRODUCTION 
+##################################################################
+FROM base AS build
 
-# COPY package*.json ./
+COPY package*.json ./
 
-# RUN npm install
+RUN npm install
 
-# COPY . .
+COPY . .
 
-# RUN npm run build
+RUN npm run build
 
-# # Next
+# Next
 
-# FROM base AS production
+FROM base AS production
 
-# ENV NODE_ENV=production
+COPY --from=build /home/${USR}/project/dist .
 
-# COPY --from=build /home/${USR}/project/dist/client .
+RUN chown -R ${UID}:${UID} /home/${USR}/project
 
-# RUN npm install -g serve
+RUN npm install -g serve
 
-# EXPOSE 3000
+ENV NODE_ENV=production
 
-# RUN chown -R ${UID}:${UID} /home/${USR}/project
+EXPOSE 3000
 
-# USER ${USR}
+USER ${USR}
 
-# CMD ["serve", "-l", "3000", "."]
+CMD ["serve", "-l", "3000", "."]
