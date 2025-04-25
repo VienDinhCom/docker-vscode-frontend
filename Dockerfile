@@ -6,8 +6,8 @@ ARG GID=1000
 
 RUN apk add --no-cache shadow
 
-# # Nonroot User
-# RUN userdel node
+# Nonroot User
+RUN userdel node
 # RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 # RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
