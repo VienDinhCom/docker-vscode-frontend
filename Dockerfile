@@ -4,7 +4,7 @@ ARG USR
 ARG UID=1000
 ARG GID=1000
 
-# RUN apk add --no-cache shadow
+RUN apk add --no-cache shadow
 
 # # Nonroot User
 # RUN userdel node
