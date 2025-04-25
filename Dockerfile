@@ -15,9 +15,9 @@ RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 WORKDIR /home/${USR}/project
 
 
-# # TARGET: DEVELOPMENT
-# ##################################################################
-# FROM base AS development
+# TARGET: DEVELOPMENT
+##################################################################
+FROM base AS development
 
 # # Fish Shell
 # RUN apk add fish
