@@ -32,8 +32,8 @@ RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 # Dev Tools
 RUN apk add git
 
-ENV API_URL=http://backend.com/api
 ENV NODE_ENV=development
+ENV API_URL=http://backend:8080
 
 EXPOSE 3000 22
 
