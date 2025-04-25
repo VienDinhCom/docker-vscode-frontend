@@ -14,7 +14,7 @@ Use an SSH CLI or an editor with SSH support, such as VSCode or Zed, to connect 
 ssh -p 2233 frontend@localhost
 ```
 
-Go to the working directory.
+After connecting to the container with SSH, go to the working directory.
 
 ```
 cd project
