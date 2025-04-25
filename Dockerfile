@@ -7,7 +7,7 @@ ARG USR=frontend
 RUN apk add --no-cache shadow
 
 # Nonroot User
-RUN userdel node
+RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1)
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
@@ -17,6 +17,9 @@ WORKDIR /home/${USR}/project
 # TARGET: DEVELOPMENT
 ##################################################################
 FROM base AS development
+
+ENV NODE_ENV=development
+ENV API_URL=http://backend:8080
 
 # Fish Shell
 RUN apk add fish
@@ -31,9 +34,6 @@ RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 # Dev Tools
 RUN apk add git
 
-ENV NODE_ENV=development
-ENV API_URL=http://backend:8080
-
 EXPOSE 3000 22
 
 USER root
@@ -41,21 +41,26 @@ USER root
 CMD ["/usr/sbin/sshd", "-D"]
 
 
-# TARGET: PRODUCTION 
+# TARGET: BUILD 
 ##################################################################
 FROM base AS build
 
-COPY package*.json ./
+ENV NODE_ENV=development
+ENV API_URL=http://backend:8080
 
+COPY package*.json ./
 RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-# Next
 
+# TARGET: PRODUCTION 
+##################################################################
 FROM base AS production
+
+ENV NODE_ENV=production
 
 COPY --from=build /home/${USR}/project/dist .
 
@@ -63,7 +68,6 @@ RUN chown -R ${UID}:${UID} /home/${USR}/project
 
 RUN npm install -g serve
 
-ENV NODE_ENV=production
 
 EXPOSE 3000
 
