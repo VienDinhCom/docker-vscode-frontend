@@ -7,7 +7,7 @@ ARG USR=frontend
 RUN apk add --no-cache shadow
 
 # Nonroot User
-RUN userdel node
+RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1)
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
