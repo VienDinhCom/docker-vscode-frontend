@@ -22,9 +22,9 @@ services:
     build:
       context: .
       target: production
-#       args:
-#         UID: ${UID}
-#         GID: ${GID}
+      args:
+        UID: ${UID}
+        GID: ${GID}
 #         USR: frontend
 #     environment:
 #       - NODE_ENV=production
