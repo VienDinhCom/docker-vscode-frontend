@@ -15,31 +15,31 @@ RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 WORKDIR /home/${USR}/project
 
 
-# # TARGET: DEVELOPMENT
-# ##################################################################
-# FROM base AS development
+# TARGET: DEVELOPMENT
+##################################################################
+FROM base AS development
 
-# # Fish Shell
-# RUN apk add fish
-# RUN chsh -s $(which fish) ${USR}
+# Fish Shell
+RUN apk add fish
+RUN chsh -s $(which fish) ${USR}
 
-# # SSH Server 
-# RUN apk add openssh
-# RUN ssh-keygen -A
-# RUN passwd -d ${USR}
-# RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
+# SSH Server 
+RUN apk add openssh
+RUN ssh-keygen -A
+RUN passwd -d ${USR}
+RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
 
-# # Dev Tools
-# RUN apk add git
+# Dev Tools
+RUN apk add git
 
-# ENV API_URL=
-# ENV NODE_ENV=development
+ENV API_URL=http://backend.com/api
+ENV NODE_ENV=development
 
-# EXPOSE 3000 22
+EXPOSE 3000 22
 
-# USER root
+USER root
 
-# CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D"]
 
 
 # # TARGET: PRODUCTION 
