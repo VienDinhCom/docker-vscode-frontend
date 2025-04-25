@@ -58,13 +58,13 @@ RUN npm run build
 
 FROM base AS production
 
-# ENV NODE_ENV=production
-
 COPY --from=build /home/${USR}/project/dist .
 
 RUN chown -R ${UID}:${UID} /home/${USR}/project
 
 RUN npm install -g serve
+
+ENV NODE_ENV=production
 
 # EXPOSE 3000
 
