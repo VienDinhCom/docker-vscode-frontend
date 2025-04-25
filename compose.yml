@@ -8,8 +8,8 @@ services:
         UID: ${UID}
         GID: ${GID}
         USR: frontend
-#     volumes:
-#       - ./:/home/frontend/project
+    volumes:
+      - ./:/home/frontend/project
 #     environment:
 #       - NODE_ENV=development
 #       - API_URL=http://backend:8080
