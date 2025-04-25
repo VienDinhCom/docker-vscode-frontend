@@ -19,9 +19,9 @@ WORKDIR /home/${USR}/project
 ##################################################################
 FROM base AS development
 
-# # Fish Shell
-# RUN apk add fish
-# RUN chsh -s $(which fish) ${USR}
+# Fish Shell
+RUN apk add fish
+RUN chsh -s $(which fish) ${USR}
 
 # # SSH Server 
 # RUN apk add openssh
