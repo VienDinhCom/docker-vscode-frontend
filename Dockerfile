@@ -39,7 +39,7 @@ EXPOSE 3000 22
 
 USER root
 
-# CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D"]
 
 
 # # TARGET: PRODUCTION 
