@@ -4,9 +4,9 @@ services:
     build:
       context: .
       target: development
-      # args:
-      #   UID: ${UID}
-      #   GID: ${GID}
+      args:
+        UID: ${UID}
+        GID: ${GID}
       #   USR: frontend
 #     volumes:
 #       - ./:/home/frontend/project
