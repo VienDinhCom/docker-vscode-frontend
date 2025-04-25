@@ -66,7 +66,7 @@ RUN npm install -g serve
 
 ENV NODE_ENV=production
 
-# EXPOSE 3000
+EXPOSE 3000
 
 # USER ${USR}
 
