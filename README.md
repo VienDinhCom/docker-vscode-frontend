@@ -8,7 +8,7 @@ Build the development image and run it with the host's `UID` and `GID`.
 UID=$(id -u) GID=$(id -g) docker compose up --build
 ```
 
-Use an SSH CLI or an editor with SSH support, such as VS Code or Zed, to connect to and work inside the development container."
+Use an SSH CLI or an editor with SSH support, such as VSCode or Zed, to connect to and work inside the development container."
 
 ```
 ssh -p 2233 frontend@localhost
