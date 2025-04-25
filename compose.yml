@@ -23,9 +23,6 @@ services:
     build:
       context: .
       target: production
-      args:
-        UID: ${UID}
-        GID: ${GID}
     environment:
       - NODE_ENV=production
     ports:

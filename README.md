@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 Build the production image and run it with the host's `UID` and `GID`.
 
 ```
-UID=$(id -u) GID=$(id -g) docker compose --profile production up --build
+docker compose --profile production up --build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
