@@ -46,9 +46,9 @@ CMD ["/usr/sbin/sshd", "-D"]
 ##################################################################
 FROM base AS build
 
-# COPY package*.json ./
+COPY package*.json ./
 
-# RUN npm install
+RUN npm install
 
 # COPY . .
 
