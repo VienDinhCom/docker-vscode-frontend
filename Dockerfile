@@ -68,6 +68,6 @@ ENV NODE_ENV=production
 
 EXPOSE 3000
 
-# USER ${USR}
+USER ${USR}
 
 # CMD ["serve", "-l", "3000", "."]
