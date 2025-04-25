@@ -45,6 +45,9 @@ CMD ["/usr/sbin/sshd", "-D"]
 ##################################################################
 FROM base AS build
 
+ENV NODE_ENV=development
+ENV API_URL=http://backend:8080
+
 COPY package*.json ./
 RUN npm install
 
