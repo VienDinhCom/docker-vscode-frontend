@@ -62,7 +62,7 @@ FROM base AS production
 
 COPY --from=build /home/${USR}/project/dist .
 
-# RUN npm install -g serve
+RUN npm install -g serve
 
 # EXPOSE 3000
 
