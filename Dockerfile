@@ -62,11 +62,11 @@ FROM base AS production
 
 COPY --from=build /home/${USR}/project/dist .
 
+RUN chown -R ${UID}:${UID} /home/${USR}/project
+
 RUN npm install -g serve
 
 # EXPOSE 3000
-
-# RUN chown -R ${UID}:${UID} /home/${USR}/project
 
 # USER ${USR}
 
