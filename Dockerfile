@@ -35,7 +35,7 @@ RUN apk add git
 ENV API_URL=http://backend.com/api
 ENV NODE_ENV=development
 
-# EXPOSE 3000 22
+EXPOSE 3000 22
 
 # USER root
 
