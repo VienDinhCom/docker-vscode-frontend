@@ -26,8 +26,8 @@ services:
         UID: ${UID}
         GID: ${GID}
         USR: frontend
-#     environment:
-#       - NODE_ENV=production
+    environment:
+      - NODE_ENV=production
 #     ports:
 #       - "3000:3000"
 #     profiles:
