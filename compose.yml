@@ -1,6 +1,6 @@
 services:
   development:
-    #     # userns_mode: "keep-id"
+    # userns_mode: "keep-id"
     build:
       context: .
       target: development
@@ -19,7 +19,7 @@ services:
       - development
 
   production:
-    #     # userns_mode: "keep-id"
+    # userns_mode: "keep-id"
     build:
       context: .
       target: production
