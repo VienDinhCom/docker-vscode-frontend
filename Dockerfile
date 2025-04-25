@@ -1,8 +1,8 @@
 FROM node:22-alpine AS base
 
-ARG USR
 ARG UID=1000
 ARG GID=1000
+ARG USR=frontend
 
 RUN apk add --no-cache shadow
 
@@ -10,7 +10,6 @@ RUN apk add --no-cache shadow
 RUN userdel node
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
-
 
 WORKDIR /home/${USR}/project
 
