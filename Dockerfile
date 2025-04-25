@@ -9,7 +9,7 @@ RUN apk add --no-cache shadow
 # Nonroot User
 RUN userdel node
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
-# RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
+RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
 
 # WORKDIR /home/${USR}/project
