@@ -7,7 +7,6 @@ services:
       args:
         UID: ${UID}
         GID: ${GID}
-        USR: frontend
     volumes:
       - ./:/home/frontend/project
     environment:
@@ -27,7 +26,6 @@ services:
       args:
         UID: ${UID}
         GID: ${GID}
-        USR: frontend
     environment:
       - NODE_ENV=production
     ports:
