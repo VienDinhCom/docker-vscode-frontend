@@ -37,7 +37,7 @@ ENV NODE_ENV=development
 
 EXPOSE 3000 22
 
-# USER root
+USER root
 
 # CMD ["/usr/sbin/sshd", "-D"]
 
