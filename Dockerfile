@@ -70,4 +70,4 @@ EXPOSE 3000
 
 USER ${USR}
 
-# CMD ["serve", "-l", "3000", "."]
+CMD ["serve", "-l", "3000", "."]
