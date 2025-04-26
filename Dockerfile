@@ -38,7 +38,7 @@ EXPOSE 3000 53000
 
 USER ${USR}
 
-CMD ["code", "serve-web", "--host", "0.0.0.0", "--port", "53000", "--accept-server-license-terms", "--without-connection-token"]
+CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-license-terms --without-connection-token --server-data-dir ${HOME}/project/.vscode/server"]
 
 
 # TARGET: BUILD 
