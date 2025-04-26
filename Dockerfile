@@ -34,7 +34,7 @@ RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/1
     && rm vscode_cli_alpine_x64_cli.tar.gz
 
 # Dev Tools
-RUN apk add --no-cache coreutils findutils openssh-client git
+RUN apk add --no-cache coreutils findutils openssh-client curl git
 
 EXPOSE 3000 53000 
 
