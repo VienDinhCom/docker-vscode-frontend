@@ -13,7 +13,7 @@ Open [http://localhost:53000](http://localhost:53000) to develop inside the cont
 Open the project in the terminal using the command:
 
 ```
-code project
+code frontend
 ```
 
 Install project dependencies.

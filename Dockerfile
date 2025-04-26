@@ -1,8 +1,11 @@
 FROM node:22-alpine AS base
 
+ARG USR=user
 ARG UID=1000
 ARG GID=1000
-ARG USR=frontend
+ARG PRJ=frontend
+
+ENV PROJECT=${PRJ}
 
 # Nonroot User
 RUN apk add --no-cache shadow
@@ -10,7 +13,7 @@ RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1)
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
-WORKDIR /home/${USR}/project
+WORKDIR /home/${USR}/${PRJ}
 
 
 # TARGET: DEVELOPMENT
@@ -23,7 +26,7 @@ ENV API_URL=http://backend:8080
 # Bash Shell
 RUN apk add --no-cache bash bash-completion
 RUN echo '. /etc/bash/bash_completion.sh' >> /etc/bash/bashrc
-RUN echo "PS1='\[\e[1;33m\]\u\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/bash/bashrc
+RUN echo "PS1='\[\e[1;33m\]${PRJ}\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/bash/bashrc
 RUN chsh -s $(which bash) ${USR}
 
 # VSCode CLI 
@@ -40,7 +43,7 @@ EXPOSE 3000 53000
 
 USER ${USR}
 
-CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-license-terms --without-connection-token --server-data-dir ${HOME}/project/.vscode/server"]
+CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-license-terms --without-connection-token --server-data-dir ${HOME}/${PROJECT}/.vscode/server"]
 
 
 # TARGET: BUILD 
@@ -55,7 +58,7 @@ RUN npm install
 
 COPY . .
 
-RUN chown -R ${UID}:${UID} /home/${USR}/project
+RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
 USER ${USR}
 
@@ -68,9 +71,9 @@ FROM base AS production
 
 ENV NODE_ENV=production
 
-COPY --from=build /home/${USR}/project/dist .
+COPY --from=build /home/${USR}/${PRJ}/dist .
 
-RUN chown -R ${UID}:${UID} /home/${USR}/project
+RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
 RUN npm install -g serve
 
