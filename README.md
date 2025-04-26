@@ -8,12 +8,12 @@ Build the development image and run it with the host's `UID` and `GID`.
 UID=$(id -u) GID=$(id -g) docker compose --profile development up --build
 ```
 
-Open [http://localhost:53000](http://localhost:53000) to work inside the development container using Visual Studio Code in your browser.
+Open [http://localhost:53000](http://localhost:53000) to develop inside the container with Visual Studio Code directly in your browser.
 
-Go to the working directory.
+Open the project in the terminal using the command:
 
 ```
-cd project
+code project
 ```
 
 Install project dependencies.
