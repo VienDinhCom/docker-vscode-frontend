@@ -54,6 +54,10 @@ RUN npm install
 
 COPY . .
 
+RUN chown -R ${UID}:${UID} /home/${USR}/project
+
+USER ${USR}
+
 RUN npm run build
 
 
@@ -68,7 +72,6 @@ COPY --from=build /home/${USR}/project/dist .
 RUN chown -R ${UID}:${UID} /home/${USR}/project
 
 RUN npm install -g serve
-
 
 EXPOSE 3000
 
