@@ -25,20 +25,21 @@ ENV API_URL=http://backend:8080
 RUN apk add fish
 RUN chsh -s $(which fish) ${USR}
 
-# SSH Server 
-RUN apk add openssh
-RUN ssh-keygen -A
-RUN passwd -d ${USR}
-RUN echo 'PermitEmptyPasswords yes' >> /etc/ssh/sshd_config
+# VSCode CLI 
+RUN apk add --no-cache musl libgcc libstdc++
+RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/17baf841131aa23349f217ca7c570c76ee87b957/vscode_cli_alpine_x64_cli.tar.gz \
+    && tar -xzf vscode_cli_alpine_x64_cli.tar.gz \
+    && mv code /usr/bin/ \
+    && rm vscode_cli_alpine_x64_cli.tar.gz
 
 # Dev Tools
 RUN apk add git
 
-EXPOSE 3000 22
+EXPOSE 3000 53000 
 
-USER root
+USER ${USR}
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["code", "serve-web", "--host", "0.0.0.0", "--port", "53000", "--accept-server-license-terms", "--without-connection-token"]
 
 
 # TARGET: BUILD 

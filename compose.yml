@@ -13,8 +13,8 @@ services:
       - NODE_ENV=development
       - API_URL=http://backend:8080
     ports:
-      - '2230:22'
       - '3000:3000'
+      - '53000:53000'
     profiles:
       - development
 
