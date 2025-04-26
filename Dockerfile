@@ -6,6 +6,7 @@ ARG GID=1000
 ARG PRJ=frontend
 
 ENV PROJECT=${PRJ}
+ENV API_URL=http://backend:8080
 
 # Nonroot User
 RUN apk add --no-cache shadow
@@ -21,7 +22,6 @@ WORKDIR /home/${USR}/${PRJ}
 FROM base AS development
 
 ENV NODE_ENV=development
-ENV API_URL=http://backend:8080
 
 # Bash Shell
 RUN apk add --no-cache bash bash-completion
@@ -51,7 +51,6 @@ CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-lic
 FROM base AS build
 
 ENV NODE_ENV=development
-ENV API_URL=http://backend:8080
 
 COPY package*.json ./
 RUN npm install
@@ -70,7 +69,6 @@ RUN npm run build
 FROM base AS production
 
 ENV NODE_ENV=production
-ENV API_URL=http://backend:8080
 
 COPY --from=build /home/${USR}/${PRJ}/dist .
 
