@@ -30,7 +30,7 @@ RUN echo "PS1='\[\e[1;33m\]${PRJ}\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/b
 RUN chsh -s $(which bash) ${USR}
 
 # VSCode CLI 
-RUN apk add --no-cache musl libgcc libstdc++
+RUN apk add --no-cache musl libgcc libstdc++ gcompat
 RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/17baf841131aa23349f217ca7c570c76ee87b957/vscode_cli_alpine_x64_cli.tar.gz \
     && tar -xzf vscode_cli_alpine_x64_cli.tar.gz \
     && mv code /usr/bin/ \
