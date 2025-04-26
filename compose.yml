@@ -10,7 +10,7 @@ services:
     volumes:
       - ./:/home/user/frontend
     environment:
-      - API_URL=http://backend:8080
+      - API_URL=https://example.com/api
     ports:
       - '3000:3000'
       - '53000:53000'
@@ -23,7 +23,7 @@ services:
       context: .
       target: production
     environment:
-      - API_URL=http://backend:8080
+      - API_URL=https://example.com/api
     ports:
       - '3000:3000'
     profiles:

@@ -6,7 +6,7 @@ ARG GID=1000
 ARG PRJ=frontend
 
 ENV PROJECT=${PRJ}
-ENV API_URL=http://backend:8080
+ENV API_URL=https://example.com/api
 
 # Nonroot User
 RUN apk add --no-cache shadow
