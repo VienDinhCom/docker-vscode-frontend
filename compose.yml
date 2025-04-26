@@ -8,13 +8,12 @@ services:
         UID: ${UID}
         GID: ${GID}
     volumes:
-      - ./:/home/frontend/project
+      - ./:/home/user/frontend
     environment:
-      - NODE_ENV=development
-      - API_URL=http://backend:8080
+      - API_URL=https://example.com/api
     ports:
-      - '2230:22'
       - '3000:3000'
+      - '53000:53000'
     profiles:
       - development
 
@@ -24,7 +23,7 @@ services:
       context: .
       target: production
     environment:
-      - NODE_ENV=production
+      - API_URL=https://example.com/api
     ports:
       - '3000:3000'
     profiles:

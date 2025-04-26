@@ -8,16 +8,12 @@ Build the development image and run it with the host's `UID` and `GID`.
 UID=$(id -u) GID=$(id -g) docker compose --profile development up --build
 ```
 
-Use an SSH CLI or an editor with SSH support, such as VSCode or Zed, to connect to and work inside the development container.
+Open [http://localhost:53000](http://localhost:53000) to develop inside the container with Visual Studio Code directly in your browser.
+
+Open the project in the terminal using the command:
 
 ```
-ssh -p 2230 frontend@localhost
-```
-
-After connecting to the container with SSH, go to the working directory.
-
-```
-cd project
+code frontend
 ```
 
 Install project dependencies.
