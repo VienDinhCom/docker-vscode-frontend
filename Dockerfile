@@ -20,9 +20,11 @@ FROM base AS development
 ENV NODE_ENV=development
 ENV API_URL=http://backend:8080
 
-# Fish Shell
-RUN apk add fish
-RUN chsh -s $(which fish) ${USR}
+# Bash Shell
+RUN apk add --no-cache bash bash-completion
+RUN echo '. /etc/bash/bash_completion.sh' >> /etc/bash/bashrc
+RUN echo "PS1='\[\e[1;32m\]\u\[\e[0m\]\[\e[1;37m\]@\[\e[1;33m\]\h\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/bash/bashrc
+RUN chsh -s $(which bash) ${USR}
 
 # VSCode CLI 
 RUN apk add --no-cache musl libgcc libstdc++
