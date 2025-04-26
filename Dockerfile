@@ -70,6 +70,7 @@ RUN npm run build
 FROM base AS production
 
 ENV NODE_ENV=production
+ENV API_URL=http://backend:8080
 
 COPY --from=build /home/${USR}/${PRJ}/dist .
 
