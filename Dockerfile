@@ -16,7 +16,6 @@ RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
 # Production Dependencies
 RUN apk add --no-cache nodejs npm
-RUN npm install -g serve
 
 WORKDIR /home/${USR}/${PRJ}
 
@@ -78,8 +77,10 @@ COPY --from=build /home/${USR}/${PRJ}/dist .
 
 RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
+RUN npm install -g serve
+
 EXPOSE 3000
 
 USER ${USR}
 
-CMD ["npm", "run", "start"]
+CMD ["serve", "-l", "3000", "."]
