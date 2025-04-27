@@ -16,6 +16,7 @@ RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
 # Production Dependencies
 RUN apk add --no-cache nodejs npm
+RUN npm install -g serve
 
 WORKDIR /home/${USR}/${PRJ}
 
