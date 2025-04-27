@@ -14,7 +14,7 @@ RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1) || tru
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
 
-# Dependencies
+# Production Dependencies
 RUN apk add --no-cache nodejs npm
 
 WORKDIR /home/${USR}/${PRJ}
@@ -39,7 +39,7 @@ RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/1
     && mv code /usr/bin/ \
     && rm vscode_cli_alpine_x64_cli.tar.gz
 
-# Dev Tools
+# Development Dependencies
 RUN apk add --no-cache coreutils findutils openssh-client curl git
 
 EXPOSE 3000 53000 
