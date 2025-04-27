@@ -1,4 +1,4 @@
-# Docker VSCode for Front End Development
+# Docker Flow for Front End Development
 
 ## Development
 
@@ -32,7 +32,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Production
 
-Build the production image and run it.
+Build the production image and run it with the host's `UID` and `GID`.
 
 ```
 docker compose --profile production up --build
