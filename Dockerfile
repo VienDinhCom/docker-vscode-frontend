@@ -1,4 +1,4 @@
-FROM node:22-alpine AS base
+FROM alpine:3.21 AS base
 
 ARG USR=user
 ARG UID=1000
@@ -10,9 +10,12 @@ ENV API_URL=https://example.com/api
 
 # Nonroot User
 RUN apk add --no-cache shadow
-RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1)
+RUN getent passwd ${UID} && userdel $(getent passwd ${UID} | cut -d: -f1) || true
 RUN getent group ${GID} || groupadd --gid ${GID} ${USR}
 RUN useradd --uid ${UID} --gid ${GID} -m ${USR}
+
+# Dependencies
+RUN apk add --no-cache nodejs npm
 
 WORKDIR /home/${USR}/${PRJ}
 
