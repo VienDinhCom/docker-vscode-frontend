@@ -77,10 +77,8 @@ COPY --from=build /home/${USR}/${PRJ}/dist .
 
 RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
-RUN npm install -g serve
-
 EXPOSE 3000
 
 USER ${USR}
 
-CMD ["serve", "-l", "3000", "."]
+CMD ["npm", "run", "start"]
