@@ -1,0 +1,6 @@
+# https://docs.docker.com/compose/how-tos/multiple-compose-files/include/
+
+include:
+  - path:
+      - production.yml
+      - override/development.yml

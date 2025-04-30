@@ -49,9 +49,9 @@ USER ${USR}
 CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-license-terms --without-connection-token --server-data-dir ${HOME}/${PROJECT}/.vscode/server"]
 
 
-# TARGET: BUILD 
+# TARGET: BUILDER
 ##################################################################
-FROM base AS build
+FROM base AS builder
 
 ENV NODE_ENV=development
 
@@ -73,7 +73,7 @@ FROM base AS production
 
 ENV NODE_ENV=production
 
-COPY --from=build /home/${USR}/${PRJ}/dist .
+COPY --from=builder /home/${USR}/${PRJ}/dist .
 
 RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
