@@ -19,6 +19,8 @@ RUN apk add --no-cache nodejs npm
 
 WORKDIR /home/${USR}/${PRJ}
 
+EXPOSE 3000
+
 
 # TARGET: DEVELOPMENT
 ##################################################################
@@ -42,7 +44,7 @@ RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/1
 # Development Dependencies
 RUN apk add --no-cache coreutils findutils openssh-client curl git
 
-EXPOSE 3000 53000 
+EXPOSE 53000 
 
 USER ${USR}
 
@@ -78,8 +80,6 @@ COPY --from=builder /home/${USR}/${PRJ}/dist .
 RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
 
 RUN npm install -g serve
-
-EXPOSE 3000
 
 USER ${USR}
 
