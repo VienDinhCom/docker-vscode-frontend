@@ -13,28 +13,18 @@
   },
 
   "vim.useSystemClipboard": true,
-  "vim.visualModeKeyBindingsNonRecursive": [
+  "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["p"],
       "commands": ["editor.action.clipboardPasteAction"]
     },
     {
       "before": ["u"],
-      "after": [],
-      "commands": [
-        {
-          "command": "undo"
-        }
-      ]
+      "commands": ["undo"]
     },
     {
       "before": ["<C-r>"],
-      "after": [],
-      "commands": [
-        {
-          "command": "redo"
-        }
-      ]
+      "commands": ["redo"]
     }
   ]
 }
