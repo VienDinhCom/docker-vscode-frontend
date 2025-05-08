@@ -35,7 +35,7 @@ ENV VSCODE_PORT=${VSCODE_PORT}
 # Bash Shell
 RUN apk add --no-cache bash bash-completion
 RUN echo '. /etc/bash/bash_completion.sh' >> /etc/bash/bashrc
-RUN echo "PS1='\[\e[1;33m\]${PRJ}\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/bash/bashrc
+RUN echo "PS1='\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/bash/bashrc
 RUN chsh -s $(which bash) ${USR}
 
 # VSCode CLI 
