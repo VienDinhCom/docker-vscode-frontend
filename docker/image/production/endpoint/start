@@ -4,4 +4,4 @@ set -e
 
 ENDPOINT_DIR=$(dirname $(realpath $0))
 
-npm run start
+serve -l 3000 .
