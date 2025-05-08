@@ -5,7 +5,8 @@ ARG UID=1000
 ARG GID=1000
 ARG PRJ=frontend
 
-ENV PROJECT=${PRJ}
+ENV PROJECT_NAME=${PRJ}
+ENV PROJECT_DIR=/home/${USR}/${PRJ}
 ENV API_URL=https://example.com/api
 
 # Nonroot User
@@ -26,7 +27,10 @@ EXPOSE 3000
 ##################################################################
 FROM base AS development
 
+ARG VSCODE_PORT=53000
+
 ENV NODE_ENV=development
+ENV VSCODE_PORT=${VSCODE_PORT}
 
 # Bash Shell
 RUN apk add --no-cache bash bash-completion
@@ -35,7 +39,7 @@ RUN echo "PS1='\[\e[1;33m\]${PRJ}\[\e[0m\] \[\e[0;32m\]\w\[\e[0m\]> '" >> /etc/b
 RUN chsh -s $(which bash) ${USR}
 
 # VSCode CLI 
-RUN apk add --no-cache musl libgcc libstdc++ gcompat
+RUN apk add --no-cache musl libgcc libstdc++ gcompat caddy
 RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/17baf841131aa23349f217ca7c570c76ee87b957/vscode_cli_alpine_x64_cli.tar.gz \
     && tar -xzf vscode_cli_alpine_x64_cli.tar.gz \
     && mv code /usr/bin/ \
@@ -44,11 +48,16 @@ RUN wget -q https://vscode.download.prss.microsoft.com/dbazure/download/stable/1
 # Development Dependencies
 RUN apk add --no-cache coreutils findutils openssh-client curl git
 
-EXPOSE 53000 
+COPY ./docker/image/development/dotfiles/* /home/${USR}/
+COPY ./docker/image/development/endpoint /home/${USR}/endpoint
+
+RUN chown -R ${UID}:${UID} /home/${USR}/
+
+EXPOSE ${VSCODE_PORT} 
 
 USER ${USR}
 
-CMD ["sh", "-c", "code serve-web --host 0.0.0.0 --port 53000 --accept-server-license-terms --without-connection-token --server-data-dir ${HOME}/${PROJECT}/.vscode/server"]
+CMD ["../endpoint/start"]
 
 
 # TARGET: BUILDER
@@ -77,10 +86,12 @@ ENV NODE_ENV=production
 
 COPY --from=builder /home/${USR}/${PRJ}/dist .
 
-RUN chown -R ${UID}:${UID} /home/${USR}/${PRJ}
+COPY ./docker/image/production/endpoint /home/${USR}/endpoint
+
+RUN chown -R ${UID}:${UID} /home/${USR}/
 
 RUN npm install -g serve
 
 USER ${USR}
 
-CMD ["serve", "-l", "3000", "."]
+CMD ["../endpoint/start"]

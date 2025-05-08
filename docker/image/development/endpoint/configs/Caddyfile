@@ -1,0 +1,14 @@
+:{$VSCODE_PORT} {
+  @root {
+    path /
+    not query folder=*
+  }
+
+  handle @root {
+    redir / /?folder={$PROJECT_DIR}
+  }
+
+  handle {
+    reverse_proxy :56789
+  }
+}
