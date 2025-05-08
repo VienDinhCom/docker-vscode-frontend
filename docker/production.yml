@@ -4,6 +4,7 @@ services:
       context: ..
       target: production
       dockerfile: docker/dockerfile
+    platform: linux/amd64
     environment:
       - API_URL=${API_URL}
     ports:
