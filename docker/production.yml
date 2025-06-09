@@ -4,9 +4,9 @@ services:
       context: ..
       target: production
       dockerfile: docker/image/dockerfile
-    platform: linux/amd64
+    platform: linux/amd64 # For Mac ARM compatibility
     environment:
       - API_URL=${API_URL}
     ports:
-      - '3000:3000'
+      - "3000:3000"
     restart: unless-stopped
